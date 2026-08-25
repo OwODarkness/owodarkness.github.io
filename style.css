@@ -14,6 +14,7 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); }
 body::before { content: ''; position: fixed; inset: 0; pointer-events: none; opacity: .26; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E"); }
+.page-shell::after { content: ''; position: fixed; z-index: -1; top: 0; right: 0; width: 42vw; height: 100vh; opacity: .13; pointer-events: none; background: linear-gradient(90deg, transparent, var(--accent)), repeating-linear-gradient(90deg, transparent 0 59px, var(--accent) 60px), repeating-linear-gradient(0deg, transparent 0 59px, var(--accent) 60px); mask-image: linear-gradient(90deg, transparent, #000); }
 .page-shell { width: min(1160px, calc(100% - 64px)); margin: auto; }
 .site-header, .site-footer { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; font: 500 12px var(--mono); letter-spacing: .03em; }
 .site-header { border-bottom: 1px solid var(--line); }
@@ -37,7 +38,8 @@ h1 em { color: var(--accent); font-family: var(--serif); font-weight: 400; lette
 .section-heading { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin-bottom: 65px; }
 .section-heading h2, .about-section h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -.07em; }
 .project-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 16px; }
-.project-card { min-height: 390px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 27px; background: var(--surface); color: var(--text); text-decoration: none; transition: transform .25s ease, background .25s ease; }
+.project-card { min-height: 390px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 27px; overflow: hidden; background: var(--surface); color: var(--text); text-decoration: none; transition: transform .25s ease, background .25s ease; }
+.project-card::after { content: ''; position: absolute; right: -70px; bottom: -90px; width: 260px; height: 260px; border: 1px solid currentColor; border-radius: 50%; opacity: .16; box-shadow: 0 0 0 24px transparent, 0 0 0 25px currentColor, 0 0 0 49px transparent, 0 0 0 50px currentColor; }
 .project-card:hover { transform: translateY(-5px); background: #222225; }
 .project-card-featured { background: var(--accent); color: var(--bg); }
 .card-topline { display: flex; justify-content: space-between; font: 500 11px var(--mono); text-transform: uppercase; }
