@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <script src="game.js" defer></script>
   </head>
   <body>
     <div class="page-shell">
@@ -25,6 +26,19 @@
           <div class="hero-actions">
             <a class="button button-primary" href="https://github.com/owodarkness" target="_blank" rel="noreferrer">Enter the lab <span aria-hidden="true">↗</span></a>
             <a class="text-link" href="mailto:hello@owodarkness.github.io">Start a conversation <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+
+        <section class="signal-section" aria-labelledby="signal-title">
+          <div class="signal-heading">
+            <p class="section-label">Playable fragment / 001</p>
+            <h2 id="signal-title">Stabilize<br /><em>the signal.</em></h2>
+            <p>Every click flips a node. Match the target pattern before the world collapses.</p>
+          </div>
+          <div class="signal-console">
+            <div class="console-topline"><span>WORLD_0101</span><span id="signal-status">SECTOR: DORMANT</span></div>
+            <div class="binary-grid" id="binary-grid" role="group" aria-label="Binary signal grid"></div>
+            <div class="console-bottomline"><span>STABILITY <strong id="stability-value">00%</strong></span><button class="reset-button" id="reset-signal" type="button">Reset signal ↻</button></div>
           </div>
         </section>
 

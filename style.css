@@ -34,6 +34,22 @@ h1 em { color: var(--accent); font-family: var(--serif); font-weight: 400; lette
 .button-primary { color: var(--bg); background: var(--accent); }
 .button span { margin-left: 24px; font-size: 17px; }
 .text-link { padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 13px; }
+.signal-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; align-items: center; padding: 95px 0 105px; border-top: 1px solid var(--line); }
+.signal-heading h2 { margin: 15px 0 22px; font-size: clamp(2.8rem, 6vw, 5.7rem); line-height: .9; letter-spacing: -.08em; }
+.signal-heading h2 em { color: var(--accent); font-family: var(--serif); font-weight: 400; }
+.signal-heading > p:last-child { max-width: 280px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.signal-console { padding: 22px; border: 1px solid var(--line); background: rgba(25, 25, 28, .9); box-shadow: 0 18px 70px rgba(0, 0, 0, .16); }
+.console-topline, .console-bottomline { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font: 500 10px var(--mono); letter-spacing: .06em; }
+.console-topline { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.console-bottomline { padding-top: 18px; }
+.console-bottomline strong { color: var(--accent); font-weight: 500; }
+.binary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 18px 0; }
+.signal-node { aspect-ratio: 1.45; border: 1px solid var(--line); color: var(--muted); background: #121215; font: 500 clamp(1.2rem, 3vw, 2rem) var(--mono); cursor: pointer; transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease; }
+.signal-node:hover, .signal-node:focus-visible { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); outline: none; }
+.signal-node.is-on { border-color: rgba(210, 242, 106, .48); color: var(--bg); background: var(--accent); box-shadow: 0 0 18px rgba(210, 242, 106, .12); }
+.reset-button { padding: 0; border: 0; border-bottom: 1px solid var(--line); color: var(--text); background: none; font: inherit; cursor: pointer; }
+.reset-button:hover, .reset-button:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+.is-stable { color: var(--accent); }
 .work-section { padding: 100px 0; border-top: 1px solid var(--line); }
 .section-heading { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin-bottom: 65px; }
 .section-heading h2, .about-section h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -.07em; }
@@ -57,6 +73,8 @@ h1 em { color: var(--accent); font-family: var(--serif); font-weight: 400; lette
   .hero { min-height: 610px; padding: 80px 0; }
   h1 { font-size: clamp(3.8rem, 18vw, 6rem); }
   .section-heading, .about-section, .about-section > div { display: block; }
+  .signal-section { display: block; padding: 80px 0; }
+  .signal-heading { margin-bottom: 42px; }
   .section-label { margin-bottom: 28px; }
   .section-heading h2, .about-section h2 { margin-bottom: 36px; }
   .project-grid { grid-template-columns: 1fr; }
