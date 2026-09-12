@@ -6,12 +6,12 @@
   --text: #f1f0eb;
   --accent: #d2f26a;
   --cyan: #74d9d0;
-  --serif: Georgia, 'Times New Roman', serif;
-  --sans: 'Manrope', system-ui, sans-serif;
-  --mono: 'DM Mono', monospace;
+  --sans: system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --mono: ui-monospace, 'Cascadia Code', Consolas, 'Courier New', monospace;
 }
 
-@font-face { font-family: 'MapleMono'; src: url('https://raw.githubusercontent.com/jiangyy/jiangyy.github.io/main/public/fonts/MapleMono-Italic.woff2') format('woff2'); font-style: italic; font-display: swap; }
+/* Maple Mono Italic, self-hosted. Maple Mono is licensed under SIL OFL 1.1 (github.com/subframe7536/maple-font). */
+@font-face { font-family: 'MapleMono'; src: url('/fonts/MapleMono-Italic.woff2') format('woff2'); font-style: italic; font-display: swap; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -20,21 +20,20 @@ body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--
 .page-shell { width: min(1160px, calc(100% - 64px)); margin: auto; }
 .site-header, .site-footer { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; font: 500 12px var(--mono); letter-spacing: .03em; }
 .site-header { border-bottom: 1px solid var(--line); }
-.brand { color: var(--text); font: 800 18px var(--sans); text-decoration: none; letter-spacing: -.12em; }
-.brand span { color: var(--accent); }
-.header-link, .text-link { color: var(--text); text-decoration: none; }
-.header-link span, .text-link span { color: var(--accent); margin-left: 6px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; }
+.brand-icon { height: 30px; width: auto; }
+.brand-name { margin: 0; color: var(--text); font-size: 17px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.header-link { color: var(--text); text-decoration: none; }
+.header-link:hover, .header-link:focus-visible { color: var(--accent); outline: none; }
+.link-arrow { color: var(--accent); margin-left: 6px; }
+.header-nav { display: flex; align-items: center; gap: 24px; }
+.mail-short { display: none; }
 .kicker, .section-label { color: var(--muted); font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-h1, h2, h3, p { margin-top: 0; }
-.hero { min-height: 520px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(420px, 1.2fr); gap: 72px; align-items: center; padding: 70px 0 85px; }
-h1 { max-width: 620px; margin: 22px 0 24px; font-size: clamp(2.8rem, 5.5vw, 4.8rem); line-height: .91; letter-spacing: -.09em; }
-.hero-copy { max-width: 420px; color: var(--muted); font-size: 16px; line-height: 1.7; }
-.hero-actions { display: flex; align-items: center; gap: 28px; margin-top: 32px; }
-.button { padding: 15px 19px; border: 1px solid var(--accent); text-decoration: none; font-size: 13px; font-weight: 700; }
-.button-primary { color: var(--bg); background: var(--accent); }
-.button span { margin-left: 24px; font-size: 17px; }
+h2, h3, p { margin-top: 0; }
+.hero { max-width: 760px; margin: 0 auto; padding: 70px 0 85px; }
+.hero .kicker { margin-bottom: 18px; }
 .hero-command { overflow: hidden; border: 1px solid var(--line); background: rgba(12, 12, 14, .78); box-shadow: 18px 18px 0 rgba(210, 242, 106, .05); font: italic 14px/1.8 'MapleMono', var(--mono); }
-.hero-command-body { min-height: 370px; padding: 28px; }
+.hero-command-body { min-height: 320px; padding: 28px; }
 .hero-command-body p { margin: 0 0 12px; }
 .hero-command-body .terminal-response { padding-left: 14px; }
 .skill-panel { position: relative; max-width: 760px; margin-left: auto; padding: 22px; border: 1px solid var(--line); background: rgba(12, 12, 14, .78); box-shadow: 18px 18px 0 rgba(210, 242, 106, .05); font: italic 14px/1.8 'MapleMono', var(--mono); }
@@ -57,7 +56,6 @@ h1 { max-width: 620px; margin: 22px 0 24px; font-size: clamp(2.8rem, 5.5vw, 4.8r
 .skill-ls .skill-directory { color: var(--cyan); }
 .skill-footer { padding-top: 18px; color: var(--muted); }
 .skill-footer span:last-child { color: var(--accent); }
-.text-link { padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 13px; }
 .skills-section { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(220px, .65fr); gap: 90px; align-items: center; padding: 95px 0 105px; border-top: 1px solid var(--line); }
 .skills-copy { grid-column: 2; align-self: start; }
 .skills-title { margin: 14px 0 20px; font-size: clamp(2.3rem, 4.4vw, 4rem); line-height: .95; letter-spacing: -.08em; }
@@ -69,8 +67,11 @@ h1 { max-width: 620px; margin: 22px 0 24px; font-size: clamp(2.8rem, 5.5vw, 4.8r
 .back-button { padding: 0 0 5px; border: 0; border-bottom: 1px solid var(--line); color: var(--text); background: transparent; font: 12px var(--mono); cursor: pointer; }
 .back-button:hover, .back-button:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
 .detail-command { margin: 25px 0 10px; color: var(--accent); }
-.detail-topics { margin: 22px 0 0; color: var(--cyan); font: 11px var(--mono); }
-.terminal-window { width: 100%; overflow: hidden; border: 1px solid var(--line); background: #0c0c0e; box-shadow: 0 18px 70px rgba(0, 0, 0, .2); font: italic 14px/1.8 'MapleMono', var(--mono); }
+.detail-features { margin: 22px 0 0; padding: 0; list-style: none; color: var(--muted); }
+.detail-features li { position: relative; padding-left: 20px; }
+.detail-features li::before { content: '›'; position: absolute; left: 2px; color: var(--cyan); }
+.detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+.detail-tags span { padding: 3px 10px; border: 1px solid var(--line); color: var(--cyan); font: 11px var(--mono); font-style: normal; letter-spacing: .04em; }
 .terminal-bar { display: flex; align-items: center; gap: 12px; padding: 10px 15px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 10px; font-style: normal; }
 .terminal-bar > span:last-child { margin-left: auto; opacity: .55; }
 .terminal-lights { display: flex; gap: 5px; }
@@ -78,29 +79,46 @@ h1 { max-width: 620px; margin: 22px 0 24px; font-size: clamp(2.8rem, 5.5vw, 4.8r
 .terminal-lights i:first-child { background: #d87474; }
 .terminal-lights i:nth-child(2) { background: #d8b774; }
 .terminal-lights i:last-child { background: var(--accent); }
-.terminal-body { min-height: 390px; padding: 30px; color: var(--text); }
-.terminal-output { max-height: 235px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.terminal-output { max-height: 292px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
 .terminal-output p { margin: 0 0 4px; }
 .prompt, .terminal-ok { color: var(--accent); }
 .terminal-muted { color: var(--muted); }
 .terminal-command { color: #f0d58b; }
 .terminal-response { max-width: 620px; padding-left: 18px; color: #c9c9c4; white-space: pre-line; }
 .terminal-response strong { color: var(--accent); font-weight: 500; }
+.terminal-response a { color: var(--cyan); }
+.terminal-help-grid { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.terminal-cmd-button { padding: 0; border: 0; color: #f0d58b; background: transparent; font: inherit; text-decoration: underline; text-decoration-color: rgba(240, 213, 139, .35); text-underline-offset: 4px; cursor: pointer; }
+.terminal-cmd-button:hover, .terminal-cmd-button:focus-visible { color: var(--accent); text-decoration-color: currentColor; outline: none; }
 .terminal-form { display: flex; align-items: center; gap: 8px; margin-top: 15px; }
 .terminal-form input { min-width: 0; flex: 1; padding: 0; border: 0; outline: 0; color: var(--text); background: transparent; font: inherit; }
 .terminal-form input::placeholder { color: #66666b; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.terminal-cursor { display: inline-block; width: 7px; height: 15px; margin-left: 5px; vertical-align: -2px; background: var(--accent); animation: cursor-blink 1s steps(2, jump-none) infinite; }
-.terminal-readout { display: flex; gap: 24px; margin-top: 25px; padding-top: 14px; border-top: 1px solid #29292d; color: var(--muted); font-size: 10px; font-style: normal; }
-@keyframes cursor-blink { 50% { opacity: 0; } }
 .site-footer { border-top: 1px solid var(--line); color: var(--muted); }
+.library-section { display: grid; grid-template-columns: minmax(180px, .45fr) minmax(0, 1.55fr); gap: 60px; align-items: center; padding: 95px 0 105px; border-top: 1px solid var(--line); }
+.library-copy { align-self: center; }
+.library-title { margin: 14px 0 20px; font-size: clamp(2.3rem, 4.4vw, 4rem); line-height: .95; letter-spacing: -.08em; white-space: nowrap; }
+.library-copy > p:last-child { max-width: 240px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.library-panel { max-width: none; }
+.library-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+.library-list span { color: var(--muted); }
+.library-item { padding: 0; border: 0; color: inherit; background: transparent; font: inherit; cursor: pointer; text-align: left; }
+.library-item:hover, .library-item:focus-visible { color: var(--accent); outline: none; }
+.library-item:hover span, .library-item:focus-visible span { color: inherit; }
+.library-detail { min-height: 280px; }
+.game-name { margin: 26px 0 4px; color: var(--text); }
+.game-hours { margin: 0 0 20px; color: var(--accent); font: 11px var(--mono); font-style: normal; letter-spacing: .08em; text-transform: uppercase; }
+.game-line { max-width: 560px; margin: 14px 0 0; }
+.game-line .prompt { margin-right: 8px; }
 
 @media (max-width: 700px) {
   .page-shell { width: min(100% - 36px, 550px); }
-  .hero { display: block; min-height: 410px; padding: 65px 0 75px; }
-  h1 { font-size: clamp(3rem, 15vw, 5rem); }
-  .hero-command { margin-top: 55px; }
+  .hero { padding: 55px 0 75px; }
+  .hero-command { margin-top: 0; }
   .skills-section { display: block; padding: 80px 0; }
+  .library-section { display: block; padding: 80px 0; }
+  .library-copy { margin-bottom: 38px; }
+  .library-list { grid-template-columns: 1fr; }
   .skills-copy { margin-bottom: 38px; }
   .skills-copy { grid-column: auto; }
   .skills-section .skill-panel { grid-column: auto; grid-row: auto; }
@@ -108,8 +126,8 @@ h1 { max-width: 620px; margin: 22px 0 24px; font-size: clamp(2.8rem, 5.5vw, 4.8r
   .skill-detail-body { padding: 20px; }
   .skill-row { grid-template-columns: 1fr; gap: 3px; }
   .skill-items { gap: 6px 14px; }
-  .hero-command-body { min-height: 300px; padding: 18px; }
-  .terminal-body { padding: 18px; font-size: 11px; }
-  .terminal-readout { flex-wrap: wrap; gap: 8px 16px; }
+  .hero-command-body { min-height: 260px; padding: 18px; }
+  .mail-full { display: none; }
+  .mail-short { display: inline; }
   .site-footer { font-size: 10px; }
 }

@@ -15,7 +15,8 @@ export const mountSkillExplorer = () => {
   const category = requiredElement<HTMLElement>('#detail-category');
   const command = requiredElement<HTMLElement>('#detail-command');
   const description = requiredElement<HTMLElement>('#detail-description');
-  const topics = requiredElement<HTMLParagraphElement>('#detail-topics');
+  const features = requiredElement<HTMLUListElement>('#detail-features');
+  const tags = requiredElement<HTMLElement>('#detail-tags');
 
   const showOverview = () => {
     detail.hidden = true;
@@ -26,7 +27,17 @@ export const mountSkillExplorer = () => {
     category.textContent = skill.category;
     command.textContent = `cat ~/skills/${skill.name.toLowerCase().replaceAll(' ', '-')}`;
     description.textContent = skill.detail;
-    topics.textContent = `tags: ${skill.topics.join(', ')}`;
+    features.replaceChildren(...skill.features.map((feature) => {
+      const item = document.createElement('li');
+      item.textContent = feature;
+      return item;
+    }));
+    tags.replaceChildren(...(skill.tags ?? []).map((tag) => {
+      const chip = document.createElement('span');
+      chip.textContent = tag;
+      return chip;
+    }));
+    tags.hidden = (skill.tags ?? []).length === 0;
     overview.hidden = true;
     detail.hidden = false;
   };
