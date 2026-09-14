@@ -1,5 +1,6 @@
 import type { SkillGroup } from '../data/profile';
 import { profile } from '../data/profile';
+import { projects } from '../data/projects';
 import { games } from '../data/library';
 import { contactEmail, terminalResponses } from '../data/terminal';
 
@@ -10,6 +11,18 @@ const renderSkillRow = ({ label, skills }: SkillGroup) => `
   </div>`;
 
 const emphasiseName = (text: string) => text.replace(profile.name, `<strong>${profile.name}</strong>`);
+
+const renderProjectCard = (project: (typeof projects)[number], index: number) => `
+  <a class="project-card" href="${project.route}">
+    <div class="project-card-spine"><span>OWNED</span><span>0${index + 1}</span></div>
+    <div class="project-card-image"><img src="${project.cover}" alt="${project.name} project capture" loading="lazy" /><span class="project-card-scan" aria-hidden="true"></span></div>
+    <div class="project-card-content">
+      <p class="project-card-index"><span>PROJECT DISC</span>${project.label}</p>
+      <h3>${project.name}</h3>
+      <p>${project.summary}</p>
+      <div class="project-card-footer"><span class="project-card-link">open case file <span aria-hidden="true">↗</span></span><span class="project-card-rating" aria-label="Personal project">◈</span></div>
+    </div>
+  </a>`;
 
 export const renderApp = () => `
   <div class="page-shell">
@@ -73,9 +86,19 @@ export const renderApp = () => `
           </div>
         </article>
       </section>
+      <section class="projects-section" id="projects" aria-labelledby="projects-title">
+        <div class="projects-copy">
+          <p class="section-label">Selected work / 03</p>
+          <h2 class="projects-title" id="projects-title">Case files.</h2>
+          <p>Small systems, real interfaces, and the captured moments behind them.</p>
+        </div>
+        <div class="projects-grid">
+          ${projects.map(renderProjectCard).join('')}
+        </div>
+      </section>
       <section class="library-section" id="library" aria-labelledby="library-title">
         <div class="library-copy">
-          <p class="section-label">Reference shelf / 03</p>
+          <p class="section-label">Reference shelf / 04</p>
           <h2 class="library-title" id="library-title">The library.</h2>
           <p>Games I’ve put serious hours into — played, finished. This is the shelf.</p>
         </div>
