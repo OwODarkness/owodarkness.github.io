@@ -7,4 +7,5 @@ dist/
 .env
 .env.local
 .workbuddy/
-resource/
+resource/*
+!resource/password/
