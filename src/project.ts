@@ -1,10 +1,10 @@
 import './styles/app.css';
-import { getProject } from './data/projects';
+import { projects, getProject } from './data/projects';
 import { renderProjectPage } from './views/project';
 
 const root = document.querySelector<HTMLDivElement>('#app');
-const projectId = window.location.pathname.includes('kimpeanut-engine') ? 'kimpeanut-engine' : 'kimpeanut-vault';
-const project = getProject(projectId);
+const projectId = projects.find((project) => window.location.pathname.includes(project.id))?.id;
+const project = projectId ? getProject(projectId) : undefined;
 
 if (!root || !project) throw new Error('Missing project page or project data');
 

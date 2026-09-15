@@ -30,7 +30,7 @@ body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--
 .mail-short { display: none; }
 .kicker, .section-label { color: var(--muted); font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 h2, h3, p { margin-top: 0; }
-.hero { max-width: 760px; margin: 0 auto; padding: 70px 0 85px; }
+.hero { max-width: none; margin: 0 auto; padding: 70px 0 85px; }
 .hero .kicker { margin-bottom: 18px; }
 .hero-command { overflow: hidden; border: 1px solid var(--line); background: rgba(12, 12, 14, .78); box-shadow: 18px 18px 0 rgba(210, 242, 106, .05); font: italic 14px/1.8 'MapleMono', var(--mono); }
 .hero-command-body { min-height: 320px; padding: 28px; }
@@ -84,7 +84,7 @@ h2, h3, p { margin-top: 0; }
 .prompt, .terminal-ok { color: var(--accent); }
 .terminal-muted { color: var(--muted); }
 .terminal-command { color: #f0d58b; }
-.terminal-response { max-width: 620px; padding-left: 18px; color: #c9c9c4; white-space: pre-line; }
+.terminal-response { max-width: 860px; padding-left: 18px; color: #c9c9c4; white-space: pre-line; }
 .terminal-response strong { color: var(--accent); font-weight: 500; }
 .terminal-response a { color: var(--cyan); }
 .terminal-help-grid { display: flex; flex-wrap: wrap; gap: 6px 16px; }
@@ -114,8 +114,11 @@ h2, h3, p { margin-top: 0; }
 .projects-copy { position: sticky; top: 36px; }
 .projects-title { margin: 14px 0 20px; font-size: clamp(2.3rem, 4.4vw, 4rem); line-height: .95; letter-spacing: -.08em; }
 .projects-copy > p:last-child { max-width: 230px; color: var(--muted); font-size: 13px; line-height: 1.7; }
-.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
-.project-card { position: relative; display: block; overflow: hidden; border: 1px solid #4a4a4f; border-radius: 10px; color: var(--text); background: linear-gradient(145deg, #202126, #111114 68%); text-decoration: none; box-shadow: 0 14px 26px rgba(0, 0, 0, .28), inset 0 1px rgba(255, 255, 255, .06); transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease; }
+.projects-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(330px, 400px); gap: 30px; overflow-x: auto; padding: 10px 12px 22px 4px; scroll-snap-type: x proximity; scrollbar-color: var(--accent) rgba(210, 242, 106, .07); }
+.projects-grid::-webkit-scrollbar { height: 8px; }
+.projects-grid::-webkit-scrollbar-track { border: 1px solid var(--line); background: repeating-linear-gradient(90deg, rgba(210, 242, 106, .07) 0 6px, transparent 6px 12px); }
+.projects-grid::-webkit-scrollbar-thumb { background: linear-gradient(90deg, var(--accent), var(--cyan)); box-shadow: 0 0 10px rgba(210, 242, 106, .45); }
+.project-card { position: relative; scroll-snap-align: start; display: block; overflow: hidden; border: 1px solid #4a4a4f; border-radius: 10px; color: var(--text); background: linear-gradient(145deg, #202126, #111114 68%); text-decoration: none; box-shadow: 0 14px 26px rgba(0, 0, 0, .28), inset 0 1px rgba(255, 255, 255, .06); transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease; }
 .project-card::after { content: ''; position: absolute; z-index: 1; top: 0; right: 0; width: 36px; height: 36px; border-left: 1px solid rgba(210, 242, 106, .5); border-bottom: 1px solid rgba(210, 242, 106, .5); border-radius: 0 9px 0 8px; opacity: .7; }
 .project-card:hover, .project-card:focus-visible { border-color: var(--accent); transform: translateY(-7px) rotate(-.45deg); box-shadow: 0 24px 40px rgba(0, 0, 0, .4), 8px 9px 0 rgba(210, 242, 106, .16), inset 0 1px rgba(255, 255, 255, .12); outline: none; }
 .project-card-spine { position: absolute; z-index: 3; top: 0; bottom: 0; left: 0; display: flex; width: 25px; flex-direction: column; justify-content: space-between; padding: 12px 7px; border-right: 1px solid rgba(210, 242, 106, .35); color: var(--accent); background: linear-gradient(180deg, #2c3b16, #12140d); font: 8px var(--mono); letter-spacing: .12em; writing-mode: vertical-rl; }
@@ -164,7 +167,7 @@ h2, h3, p { margin-top: 0; }
   .library-section { display: block; padding: 80px 0; }
   .projects-section { display: block; padding: 80px 0; }
   .projects-copy { position: static; margin-bottom: 38px; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-auto-columns: min(86%, 340px); gap: 20px; }
   .project-main { padding: 40px 0 76px; }
   .project-back { margin-bottom: 38px; }
   .project-hero { grid-template-columns: 1fr; gap: 34px; }

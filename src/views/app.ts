@@ -60,9 +60,19 @@ export const renderApp = () => `
           </div>
         </section>
       </div>
+      <section class="projects-section" id="projects" aria-labelledby="projects-title">
+        <div class="projects-copy">
+          <p class="section-label">Selected work / 02</p>
+          <h2 class="projects-title" id="projects-title">Projects.</h2>
+          <p>Small systems, real interfaces, and the captured moments behind them.</p>
+        </div>
+        <div class="projects-grid">
+          ${projects.map(renderProjectCard).join('')}
+        </div>
+      </section>
       <section class="skills-section" id="skills" aria-labelledby="skills-title">
         <div class="skills-copy" id="skill-overview-copy">
-          <p class="section-label">System profile / 02</p>
+          <p class="section-label">System profile / 03</p>
           <h2 class="skills-title" id="skills-title">The toolkit.</h2>
           <p>Languages, engines, and systems I reach for when building a world.</p>
         </div>
@@ -85,16 +95,6 @@ export const renderApp = () => `
             <div class="detail-tags" id="detail-tags" hidden></div>
           </div>
         </article>
-      </section>
-      <section class="projects-section" id="projects" aria-labelledby="projects-title">
-        <div class="projects-copy">
-          <p class="section-label">Selected work / 03</p>
-          <h2 class="projects-title" id="projects-title">Case files.</h2>
-          <p>Small systems, real interfaces, and the captured moments behind them.</p>
-        </div>
-        <div class="projects-grid">
-          ${projects.map(renderProjectCard).join('')}
-        </div>
       </section>
       <section class="library-section" id="library" aria-labelledby="library-title">
         <div class="library-copy">
