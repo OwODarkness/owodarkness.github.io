@@ -1,4 +1,5 @@
 import { profile, type Skill } from '../data/profile';
+import { tx, type Locale } from './i18n';
 
 const requiredElement = <T extends Element>(selector: string): T => {
   const element = document.querySelector<T>(selector);
@@ -8,7 +9,7 @@ const requiredElement = <T extends Element>(selector: string): T => {
 
 const entries = profile.skills.flatMap((group) => group.skills.map((skill) => ({ ...skill, category: group.label })));
 
-export const mountSkillExplorer = () => {
+export const mountSkillExplorer = (locale: Locale) => {
   const overview = requiredElement<HTMLElement>('#skill-overview');
   const detail = requiredElement<HTMLElement>('#skill-detail');
   const back = requiredElement<HTMLButtonElement>('#skill-back');
@@ -26,10 +27,10 @@ export const mountSkillExplorer = () => {
   const showDetail = (skill: Skill & { category: string }) => {
     category.textContent = skill.category;
     command.textContent = `cat ~/skills/${skill.name.toLowerCase().replaceAll(' ', '-')}`;
-    description.textContent = skill.detail;
+    description.textContent = tx(skill.detail, locale);
     features.replaceChildren(...skill.features.map((feature) => {
       const item = document.createElement('li');
-      item.textContent = feature;
+      item.textContent = tx(feature, locale);
       return item;
     }));
     tags.replaceChildren(...(skill.tags ?? []).map((tag) => {

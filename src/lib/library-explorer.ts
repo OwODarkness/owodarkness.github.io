@@ -1,4 +1,6 @@
 import { games, type Game } from '../data/library';
+import { formatHours } from './format';
+import { tx, type Locale } from './i18n';
 
 const requiredElement = <T extends Element>(selector: string): T => {
   const element = document.querySelector<T>(selector);
@@ -6,7 +8,7 @@ const requiredElement = <T extends Element>(selector: string): T => {
   return element;
 };
 
-export const mountLibraryExplorer = () => {
+export const mountLibraryExplorer = (locale: Locale) => {
   const overview = requiredElement<HTMLElement>('#library-overview');
   const detail = requiredElement<HTMLElement>('#library-detail');
   const back = requiredElement<HTMLButtonElement>('#library-back');
@@ -23,10 +25,10 @@ export const mountLibraryExplorer = () => {
 
   const showDetail = (game: Game) => {
     command.textContent = `cat ~/library/${game.id}/notes`;
-    name.textContent = `${game.name} · ${game.zh}`;
-    hours.textContent = `PLAYED · ${game.hours} HRS`;
-    feel.textContent = game.feel;
-    lesson.textContent = game.lesson;
+    name.textContent = locale === 'zh' ? `${game.zh} · ${game.name}` : game.name;
+    hours.textContent = formatHours(game.hours, locale);
+    feel.textContent = tx(game.feel, locale);
+    lesson.textContent = tx(game.lesson, locale);
     overview.hidden = true;
     detail.hidden = false;
   };

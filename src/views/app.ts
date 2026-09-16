@@ -1,8 +1,11 @@
+import type { Locale } from '../lib/i18n';
+import { tx } from '../lib/i18n';
 import type { SkillGroup } from '../data/profile';
 import { profile } from '../data/profile';
 import { projects } from '../data/projects';
 import { games } from '../data/library';
 import { contactEmail, terminalResponses } from '../data/terminal';
+import { ui } from '../data/ui';
 
 const renderSkillRow = ({ label, skills }: SkillGroup) => `
   <div class="skill-row">
@@ -12,19 +15,26 @@ const renderSkillRow = ({ label, skills }: SkillGroup) => `
 
 const emphasiseName = (text: string) => text.replace(profile.name, `<strong>${profile.name}</strong>`);
 
-const renderProjectCard = (project: (typeof projects)[number], index: number) => `
+const renderProjectCard = (project: (typeof projects)[number], index: number, locale: Locale) => `
   <a class="project-card" href="${project.route}">
-    <div class="project-card-spine"><span>OWNED</span><span>0${index + 1}</span></div>
+    <div class="project-card-spine"><span>${tx(ui.projects.spine, locale)}</span><span>0${index + 1}</span></div>
     <div class="project-card-image"><img src="${project.cover}" alt="${project.name} project capture" loading="lazy" /><span class="project-card-scan" aria-hidden="true"></span></div>
     <div class="project-card-content">
-      <p class="project-card-index"><span>PROJECT DISC</span>${project.label}</p>
+      <p class="project-card-index"><span>${tx(ui.projects.disc, locale)}</span>${tx(project.label, locale)}</p>
       <h3>${project.name}</h3>
-      <p>${project.summary}</p>
-      <div class="project-card-footer"><span class="project-card-link">open case file <span aria-hidden="true">↗</span></span><span class="project-card-rating" aria-label="Personal project">◈</span></div>
+      <p>${tx(project.summary, locale)}</p>
+      <div class="project-card-footer"><span class="project-card-link">${tx(ui.projects.open, locale)} <span aria-hidden="true">↗</span></span><span class="project-card-rating" aria-label="Personal project">◈</span></div>
     </div>
   </a>`;
 
-export const renderApp = () => `
+export const renderLangSwitch = (locale: Locale) => `
+  <button class="lang-switch" id="lang-switch" type="button" aria-label="${tx(ui.lang.label, locale)}">
+    <span class="lang-switch-code">${locale === 'zh' ? '中' : 'EN'}</span>
+    <span class="lang-switch-sep" aria-hidden="true">/</span>
+    <span class="lang-switch-target">${tx(ui.lang.switchTo, locale)}</span>
+  </button>`;
+
+export const renderApp = (locale: Locale) => `
   <div class="page-shell">
     <header class="site-header">
       <a class="brand" href="/">
@@ -32,13 +42,14 @@ export const renderApp = () => `
         <h1 class="brand-name">OwODarkness</h1>
       </a>
       <nav class="header-nav" aria-label="Contact and profile">
-        <a class="header-link header-mail" href="mailto:${profile.email}"><span class="mail-full">${profile.email}</span><span class="mail-short">Email</span></a>
+        <a class="header-link header-mail" href="mailto:${profile.email}"><span class="mail-full">${profile.email}</span><span class="mail-short">${tx(ui.nav.email, locale)}</span></a>
         <a class="header-link" href="${profile.githubUrl}" target="_blank" rel="noreferrer">GitHub <span class="link-arrow" aria-hidden="true">↗</span></a>
+        ${renderLangSwitch(locale)}
       </nav>
     </header>
     <main>
       <div class="hero">
-        <p class="kicker">Game developer // 0101</p>
+        <p class="kicker">${tx(ui.hero.kicker, locale)}</p>
         <section class="hero-command" id="terminal-title" aria-label="Personal command terminal">
           <div class="terminal-bar"><span class="terminal-lights" aria-hidden="true"><i></i><i></i><i></i></span><span>visitor@owodarkness:~</span><span>tty01</span></div>
           <div class="hero-command-body">
@@ -62,19 +73,19 @@ export const renderApp = () => `
       </div>
       <section class="projects-section" id="projects" aria-labelledby="projects-title">
         <div class="projects-copy">
-          <p class="section-label">Selected work / 02</p>
-          <h2 class="projects-title" id="projects-title">Projects.</h2>
-          <p>Small systems, real interfaces, and the captured moments behind them.</p>
+          <p class="section-label">${tx(ui.projects.sectionLabel, locale)}</p>
+          <h2 class="projects-title" id="projects-title">${tx(ui.projects.title, locale)}</h2>
+          <p>${tx(ui.projects.intro, locale)}</p>
         </div>
         <div class="projects-grid">
-          ${projects.map(renderProjectCard).join('')}
+          ${projects.map((project, index) => renderProjectCard(project, index, locale)).join('')}
         </div>
       </section>
       <section class="skills-section" id="skills" aria-labelledby="skills-title">
         <div class="skills-copy" id="skill-overview-copy">
-          <p class="section-label">System profile / 03</p>
-          <h2 class="skills-title" id="skills-title">The toolkit.</h2>
-          <p>Languages, engines, and systems I reach for when building a world.</p>
+          <p class="section-label">${tx(ui.skills.sectionLabel, locale)}</p>
+          <h2 class="skills-title" id="skills-title">${tx(ui.skills.title, locale)}</h2>
+          <p>${tx(ui.skills.intro, locale)}</p>
         </div>
         <aside class="skill-panel" id="skill-overview" aria-label="Technical skills">
           <div class="skill-panel-header"><span>visitor@owodarkness:~</span><span class="skill-live">● ONLINE</span></div>
@@ -98,16 +109,16 @@ export const renderApp = () => `
       </section>
       <section class="library-section" id="library" aria-labelledby="library-title">
         <div class="library-copy">
-          <p class="section-label">Reference shelf / 04</p>
-          <h2 class="library-title" id="library-title">The library.</h2>
-          <p>Games I’ve put serious hours into — played, finished. This is the shelf.</p>
+          <p class="section-label">${tx(ui.library.sectionLabel, locale)}</p>
+          <h2 class="library-title" id="library-title">${tx(ui.library.title, locale)}</h2>
+          <p>${tx(ui.library.intro, locale)}</p>
         </div>
         <aside class="skill-panel library-panel" aria-label="Games played">
           <div class="skill-panel-header"><span>visitor@owodarkness:~</span><span class="skill-live">● PLAYED</span></div>
           <div id="library-overview">
             <p class="skill-prompt">$ ls ~/library/</p>
             <ul class="library-list">
-              ${games.map((game) => `<li><button class="library-item" type="button" data-game-id="${game.id}">${game.name} <span lang="zh">(${game.zh})</span></button></li>`).join('')}
+              ${games.map((game) => `<li><button class="library-item" type="button" data-game-id="${game.id}">${locale === 'zh' ? game.zh : game.name}</button></li>`).join('')}
             </ul>
           </div>
           <article class="library-detail" id="library-detail" hidden aria-live="polite">
@@ -124,6 +135,6 @@ export const renderApp = () => `
     </main>
     <footer class="site-footer">
       <span>© 2026 ${profile.name}</span>
-      <span class="footer-note">Made with curiosity <span aria-hidden="true">✦</span></span>
+      <span class="footer-note">${tx(ui.footer.made, locale)} <span aria-hidden="true">✦</span></span>
     </footer>
   </div>`;
