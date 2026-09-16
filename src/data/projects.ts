@@ -33,9 +33,14 @@ export const projects: Project[] = [
         caption: 'Browsing engine assets without leaving the editor.',
       },
       {
+        src: '/projects/kimpeanut-engine/asset-reference.png',
+        alt: 'KimPeanut Engine asset reference viewer',
+        caption: 'The reference viewer traces level → model → material → shader dependency chains as a graph.',
+      },
+      {
         src: '/projects/kimpeanut-engine/live2d.png',
-        alt: 'KimPeanut Engine rendering view',
-        caption: 'A live rendering view for scene and material iteration.',
+        alt: 'KimPeanut Engine Live2D viewer',
+        caption: 'A dedicated Live2D viewer: gaze targeting, speech bubbles, and per-frame Vulkan profiling.',
       },
       {
         src: '/projects/kimpeanut-engine/loading.png',
@@ -50,7 +55,7 @@ export const projects: Project[] = [
     ],
     notes: [
       'A modular rendering architecture with an API-neutral RHI over Vulkan and OpenGL backends.',
-      'The editor brings scene inspection, asset browsing, diagnostics, and profiling into the same working loop.',
+      'The editor brings scene inspection, asset browsing, dependency reference graphs, diagnostics, and profiling into the same working loop.',
     ],
   },
   {
