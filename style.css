@@ -117,7 +117,6 @@ h2, h3, p { margin-top: 0; }
 .game-line { max-width: 560px; margin: 14px 0 0; }
 .game-line .prompt { margin-right: 8px; }
 .projects-section { display: grid; grid-template-columns: minmax(180px, .45fr) minmax(0, 1.55fr); gap: 60px; align-items: start; padding: 95px 0 105px; border-top: 1px solid var(--line); }
-.projects-copy { position: sticky; top: 36px; }
 .projects-title { margin: 14px 0 20px; font-size: clamp(2.3rem, 4.4vw, 4rem); line-height: .95; letter-spacing: -.08em; }
 .projects-copy > p:last-child { max-width: 230px; color: var(--muted); font-size: 13px; line-height: 1.7; }
 .projects-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(330px, 400px); gap: 30px; overflow-x: auto; padding: 10px 12px 22px 4px; scroll-snap-type: x proximity; scrollbar-color: var(--accent) rgba(210, 242, 106, .07); }

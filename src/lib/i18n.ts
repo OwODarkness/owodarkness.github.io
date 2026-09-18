@@ -34,6 +34,12 @@ export const toggleLocale = (locale: Locale): Locale => (locale === 'zh' ? 'en' 
 /** Resolve a bilingual value for the active locale. */
 export const tx = (value: Tx, locale: Locale): string => value[locale];
 
+/**
+ * Mark copy as language-independent: it renders identically in every locale.
+ * Used for entries that deliberately mix Chinese and English and should not be translated.
+ */
+export const fixed = (value: string): Tx => ({ zh: value, en: value });
+
 export const applyDocumentLocale = (locale: Locale): void => {
   document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en';
 };

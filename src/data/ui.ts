@@ -1,4 +1,4 @@
-import type { Tx } from '../lib/i18n';
+import { fixed, type Tx } from '../lib/i18n';
 
 /**
  * Interface copy in both languages.
@@ -39,7 +39,8 @@ export const ui = {
       zh: '我投入了大量时间的游戏——通关、玩透。这就是那个书架。',
       en: 'Games I’ve put serious hours into — played, finished. This is the shelf.',
     } satisfies Tx,
-    hours: { zh: '已玩 · {n} 小时', en: 'PLAYED · {n} HRS' } satisfies Tx,
+    // Terminal readout — stays English in every locale.
+    hours: fixed('PLAYED · {n} HRS') satisfies Tx,
   },
   footer: {
     made: { zh: '用好奇心做成', en: 'Made with curiosity' } satisfies Tx,

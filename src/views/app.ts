@@ -118,7 +118,7 @@ export const renderApp = (locale: Locale) => `
           <div id="library-overview">
             <p class="skill-prompt">$ ls ~/library/</p>
             <ul class="library-list">
-              ${games.map((game) => `<li><button class="library-item" type="button" data-game-id="${game.id}">${locale === 'zh' ? game.zh : game.name}</button></li>`).join('')}
+              ${games.map((game) => `<li><button class="library-item" type="button" data-game-id="${game.id}">${game.name} <span lang="zh">(${game.zh})</span></button></li>`).join('')}
             </ul>
           </div>
           <article class="library-detail" id="library-detail" hidden aria-live="polite">

@@ -25,7 +25,8 @@ export const mountLibraryExplorer = (locale: Locale) => {
 
   const showDetail = (game: Game) => {
     command.textContent = `cat ~/library/${game.id}/notes`;
-    name.textContent = locale === 'zh' ? `${game.zh} · ${game.name}` : game.name;
+    // Game titles deliberately stay mixed: original English title beside the Chinese one.
+    name.textContent = `${game.name} · ${game.zh}`;
     hours.textContent = formatHours(game.hours, locale);
     feel.textContent = tx(game.feel, locale);
     lesson.textContent = tx(game.lesson, locale);
