@@ -37,48 +37,48 @@ export const projects: Project[] = [
       {
         src: '/projects/kimpeanut-engine/editor-main.png',
         alt: 'KimPeanut Engine scene editor',
-        caption: { zh: '打开就是这一屏。', en: 'One screen, everything on it.' },
+        caption: { zh: '主编辑器界面', en: 'Scene editor' },
       },
       {
         src: '/projects/kimpeanut-engine/asset-browser.png',
         alt: 'KimPeanut Engine asset browser',
-        caption: { zh: '资产都在这里翻。', en: 'Where the assets live.' },
+        caption: { zh: '资产浏览器', en: 'Asset browser' },
       },
       {
         src: '/projects/kimpeanut-engine/asset-reference.png',
         alt: 'KimPeanut Engine asset reference viewer',
-        caption: { zh: '谁依赖谁，查得到。', en: 'Who depends on whom.' },
+        caption: { zh: '资产依赖查看器', en: 'Asset reference viewer' },
       },
       {
         src: '/projects/kimpeanut-engine/live2d.png',
         alt: 'KimPeanut Engine Live2D viewer',
-        caption: { zh: 'Live2D 也能实时跑。', en: 'Live2D, running live.' },
+        caption: { zh: 'Live2D 查看器', en: 'Live2D viewer' },
         tall: true,
       },
       {
         src: '/projects/kimpeanut-engine/loading.png',
         alt: 'KimPeanut Engine loading screen',
-        caption: { zh: '启动画面。', en: 'Boot screen.' },
+        caption: { zh: '启动画面', en: 'Loading screen' },
       },
       {
         src: '/projects/kimpeanut-engine/terrain.png',
         alt: 'KimPeanut Engine procedural terrain generation with layered noise',
-        caption: { zh: '噪声堆出来的地形。', en: 'Noise stacked into terrain.' },
+        caption: { zh: '地形生成器', en: 'Terrain generator' },
       },
       {
         src: '/projects/kimpeanut-engine/audio-player.png',
         alt: 'KimPeanut Engine built-in audio player with queue and spectrum',
-        caption: { zh: '听歌也在引擎里。', en: 'Music, in-engine.' },
+        caption: { zh: '音频播放器', en: 'Audio player' },
       },
       {
         src: '/projects/kimpeanut-engine/tts.png',
         alt: 'KimPeanut Engine TTS dialog voicing tool',
-        caption: { zh: '台词批量变语音。', en: 'Every line, voiced at once.' },
+        caption: { zh: '语音合成工具', en: 'TTS tool' },
       },
       {
         src: '/projects/kimpeanut-engine/terminal.png',
         alt: 'KimPeanut Engine terminal output',
-        caption: { zh: '还有命令行这一边。', en: 'There is a shell too.' },
+        caption: { zh: '命令行输出', en: 'Terminal output' },
       },
     ],
     notes: [
@@ -128,47 +128,47 @@ export const projects: Project[] = [
       {
         src: '/projects/ue-game/menu.jpg',
         alt: '沃土重生 main menu',
-        caption: { zh: '打开先进这里。', en: 'What you see first.' },
+        caption: { zh: '主菜单', en: 'Main menu' },
       },
       {
         src: '/projects/ue-game/boss-dragon.jpg',
         alt: '沃土重生 dragon boss battle',
-        caption: { zh: '夜里打龙。', en: 'Night fight with the dragon.' },
+        caption: { zh: 'BOSS 战', en: 'Boss fight' },
       },
       {
         src: '/projects/ue-game/bow-combat.png',
         alt: 'Bow combat against a wraith',
-        caption: { zh: '射一箭。', en: 'Let one fly.' },
+        caption: { zh: '弓箭射击', en: 'Arrow shot' },
       },
       {
         src: '/projects/ue-game/melee-combat.png',
         alt: 'Melee combat with a staff',
-        caption: { zh: '用杖：慢，范围大。', en: 'Staff: slow, but wide.' },
+        caption: { zh: '多武器攻击 · 杖', en: 'Multi-weapon attack: staff' },
       },
       {
         src: '/projects/ue-game/sword-combat.png',
         alt: 'Enchanted sword strike',
-        caption: { zh: '换剑：快，贴身打。', en: 'Sword: fast, up close.' },
+        caption: { zh: '多武器攻击 · 剑', en: 'Multi-weapon attack: sword' },
       },
       {
         src: '/projects/ue-game/alchemy.jpg',
         alt: 'Alchemy crafting interface',
-        caption: { zh: '研磨、搅拌、熬制。', en: 'Grind, stir, brew.' },
+        caption: { zh: '炼金系统', en: 'Alchemy system' },
       },
       {
         src: '/projects/ue-game/swimming.jpg',
         alt: 'Swimming in an autumn river',
-        caption: { zh: '水也能下去游。', en: 'You can swim in it.' },
+        caption: { zh: '游泳系统', en: 'Swimming' },
       },
       {
         src: '/projects/ue-game/horse-riding.png',
         alt: 'Horseback riding',
-        caption: { zh: '骑马赶路。', en: 'Ride to get around.' },
+        caption: { zh: '骑乘系统', en: 'Ride system' },
       },
       {
         src: '/projects/ue-game/terrain-plugin.png',
         alt: 'Procedural terrain editor plugin',
-        caption: { zh: '地形是算出来的。', en: 'The terrain is generated.' },
+        caption: { zh: '地形生成器', en: 'Terrain generator' },
       },
     ],
     notes: [
@@ -201,17 +201,17 @@ export const projects: Project[] = [
       {
         src: '/projects/kimpeanut-vault/vault-overview.png',
         alt: 'KimPeanut Vault records screen',
-        caption: { zh: '打开就是记录列表。', en: 'Records, right away.' },
+        caption: { zh: '记录列表', en: 'Records' },
       },
       {
         src: '/projects/kimpeanut-vault/login.jpg',
         alt: 'KimPeanut Vault unlock screen',
-        caption: { zh: '输密码，进去。', en: 'Password, then in.' },
+        caption: { zh: '解锁界面', en: 'Unlock screen' },
       },
       {
         src: '/projects/kimpeanut-vault/sync.jpg',
         alt: 'KimPeanut Vault sync screen',
-        caption: { zh: '同步状态就摆在旁边。', en: 'Sync status, right there.' },
+        caption: { zh: '同步状态', en: 'Sync status' },
       },
     ],
     notes: [
