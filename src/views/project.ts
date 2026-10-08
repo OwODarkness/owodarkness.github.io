@@ -5,6 +5,18 @@ import { profile } from '../data/profile';
 import { ui } from '../data/ui';
 import { renderLangSwitch } from './app';
 
+const renderShowcase = (showcase: NonNullable<Project['showcase']>, locale: Locale) => `
+      <section class="project-showcase" aria-labelledby="showcase-title">
+        <p class="detail-command"><span class="prompt">$</span> ${showcase.command}</p>
+        <div class="showcase-head">
+          <p class="section-label">${tx(showcase.label, locale)}</p>
+          <h3 id="showcase-title">${tx(showcase.title, locale)}</h3>
+        </div>
+        <div class="showcase-figures">
+          ${showcase.images.map((image) => `<figure class="capture"><img src="${image.src}" alt="${image.alt}" loading="lazy" /><figcaption>${tx(image.caption, locale)}</figcaption></figure>`).join('')}
+        </div>
+      </section>`;
+
 export const renderProjectPage = (project: Project, locale: Locale) => `
   <div class="page-shell project-page-shell">
     <header class="site-header">
@@ -33,6 +45,7 @@ export const renderProjectPage = (project: Project, locale: Locale) => `
         <p class="detail-command"><span class="prompt">$</span> cat ./notes.md</p>
         ${project.notes.map((note) => `<p>${tx(note, locale)}</p>`).join('')}
       </section>
+      ${project.showcase ? renderShowcase(project.showcase, locale) : ''}
       <section class="project-gallery" aria-label="Project captures">
         <p class="detail-command"><span class="prompt">$</span> ls ./captures/</p>
         <div class="capture-grid${project.gallery.some((image) => image.tall) ? ' capture-grid--stacked' : ''}">

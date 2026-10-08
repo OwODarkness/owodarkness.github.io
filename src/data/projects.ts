@@ -1,4 +1,4 @@
-import type { Tx } from '../lib/i18n';
+import { fixed, type Tx } from '../lib/i18n';
 
 export type Project = {
   id: 'ue-game' | 'kimpeanut-vault' | 'kimpeanut-engine';
@@ -11,6 +11,13 @@ export type Project = {
   stack: string[];
   gallery: Array<{ src: string; alt: string; caption: Tx; tall?: boolean }>;
   notes: Tx[];
+  /** A dedicated deep-dive block rendered below the captures. */
+  showcase?: {
+    command: string;
+    label: Tx;
+    title: Tx;
+    images: Array<{ src: string; alt: string; caption: Tx }>;
+  };
 };
 
 export const projects: Project[] = [
@@ -30,45 +37,81 @@ export const projects: Project[] = [
       {
         src: '/projects/kimpeanut-engine/editor-main.png',
         alt: 'KimPeanut Engine scene editor',
-        caption: { zh: '整个世界，一屏之内。', en: 'The whole world in one surface.' },
+        caption: { zh: '打开就是这一屏。', en: 'One screen, everything on it.' },
       },
       {
         src: '/projects/kimpeanut-engine/asset-browser.png',
         alt: 'KimPeanut Engine asset browser',
-        caption: { zh: '所有资产，一览无余。', en: 'Every asset, one glance.' },
+        caption: { zh: '资产都在这里翻。', en: 'Where the assets live.' },
       },
       {
         src: '/projects/kimpeanut-engine/asset-reference.png',
         alt: 'KimPeanut Engine asset reference viewer',
-        caption: { zh: '追溯一个关卡依赖了什么。', en: 'Follow what a level depends on.' },
+        caption: { zh: '谁依赖谁，查得到。', en: 'Who depends on whom.' },
       },
       {
         src: '/projects/kimpeanut-engine/live2d.png',
         alt: 'KimPeanut Engine Live2D viewer',
-        caption: { zh: 'Live2D，实时驱动。', en: 'Live2D, driven in real time.' },
+        caption: { zh: 'Live2D 也能实时跑。', en: 'Live2D, running live.' },
         tall: true,
       },
       {
         src: '/projects/kimpeanut-engine/loading.png',
         alt: 'KimPeanut Engine loading screen',
-        caption: { zh: '引擎启动中。', en: 'Booting the engine.' },
+        caption: { zh: '启动画面。', en: 'Boot screen.' },
+      },
+      {
+        src: '/projects/kimpeanut-engine/terrain.png',
+        alt: 'KimPeanut Engine procedural terrain generation with layered noise',
+        caption: { zh: '噪声堆出来的地形。', en: 'Noise stacked into terrain.' },
+      },
+      {
+        src: '/projects/kimpeanut-engine/audio-player.png',
+        alt: 'KimPeanut Engine built-in audio player with queue and spectrum',
+        caption: { zh: '听歌也在引擎里。', en: 'Music, in-engine.' },
+      },
+      {
+        src: '/projects/kimpeanut-engine/tts.png',
+        alt: 'KimPeanut Engine TTS dialog voicing tool',
+        caption: { zh: '台词批量变语音。', en: 'Every line, voiced at once.' },
       },
       {
         src: '/projects/kimpeanut-engine/terminal.png',
         alt: 'KimPeanut Engine terminal output',
-        caption: { zh: '底层的命令行。', en: 'The command line underneath.' },
+        caption: { zh: '还有命令行这一边。', en: 'There is a shell too.' },
       },
     ],
     notes: [
       {
-        zh: '模块化的渲染架构，RHI 与具体 API 解耦，可跑在 Vulkan 与 OpenGL 后端之上。',
-        en: 'A modular rendering architecture with an API-neutral RHI over Vulkan and OpenGL backends.',
+        zh: 'RHI 把 Vulkan 和 OpenGL 压在底层，上层代码不知道自己跑在哪个后端上。',
+        en: 'The RHI keeps Vulkan and OpenGL underneath — code above it never knows which backend it is running on.',
       },
       {
-        zh: '编辑器把场景检视、资产浏览、依赖关系图、诊断与性能分析收进同一条工作流。',
-        en: 'The editor brings scene inspection, asset browsing, dependency reference graphs, diagnostics, and profiling into the same working loop.',
+        zh: '编辑器是自己天天在用的那个工具：改场景、翻资产、查依赖、看性能，都在同一个窗口里，不用四五个程序切来切去。',
+        en: 'The editor is the tool I actually work in: scene, assets, dependency graph, profiling — one window instead of four.',
+      },
+      {
+        zh: '音频也自己攒了一套：能排队、能看频谱的播放器，外加一个给对话批量配音的 TTS 工具。',
+        en: 'Audio got the same treatment: a player with a queue and a spectrum view, plus a TTS tool that voices dialog lines in batch.',
       },
     ],
+    showcase: {
+      command: 'cat ./gi/README',
+      label: { zh: '渲染 / 全局光照', en: 'rendering / global illumination' },
+      title: { zh: '全局光照。', en: 'Global illumination.' },
+      images: [
+        {
+          src: '/projects/kimpeanut-engine/sponza.png',
+          alt: 'KimPeanut Engine global illumination render of the Sponza atrium',
+          caption: fixed('Sponza'),
+        },
+        {
+          src: '/projects/kimpeanut-engine/cornell-box.png',
+          alt: 'KimPeanut Engine Cornell box light bounces test',
+          caption: fixed('Cornell Box'),
+        },
+      ],
+    },
   },
   {
     id: 'ue-game',
@@ -85,27 +128,27 @@ export const projects: Project[] = [
       {
         src: '/projects/ue-game/menu.jpg',
         alt: '沃土重生 main menu',
-        caption: { zh: '旅程开始的地方。', en: 'Where the journey starts.' },
+        caption: { zh: '打开先进这里。', en: 'What you see first.' },
       },
       {
         src: '/projects/ue-game/boss-dragon.jpg',
         alt: '沃土重生 dragon boss battle',
-        caption: { zh: '巨龙醒来。', en: 'The dragon wakes.' },
+        caption: { zh: '夜里打龙。', en: 'Night fight with the dragon.' },
       },
       {
         src: '/projects/ue-game/bow-combat.png',
         alt: 'Bow combat against a wraith',
-        caption: { zh: '一箭离弦。', en: 'An arrow, loosed.' },
+        caption: { zh: '射一箭。', en: 'Let one fly.' },
       },
       {
         src: '/projects/ue-game/melee-combat.png',
         alt: 'Melee combat with a staff',
-        caption: { zh: '一种武器，一种节奏。', en: 'One weapon, one rhythm.' },
+        caption: { zh: '用杖：慢，范围大。', en: 'Staff: slow, but wide.' },
       },
       {
         src: '/projects/ue-game/sword-combat.png',
         alt: 'Enchanted sword strike',
-        caption: { zh: '另一种武器，另一种节奏。', en: 'Another weapon, another rhythm.' },
+        caption: { zh: '换剑：快，贴身打。', en: 'Sword: fast, up close.' },
       },
       {
         src: '/projects/ue-game/alchemy.jpg',
@@ -115,31 +158,31 @@ export const projects: Project[] = [
       {
         src: '/projects/ue-game/swimming.jpg',
         alt: 'Swimming in an autumn river',
-        caption: { zh: '水有自己的规则。', en: 'The water has its own rules.' },
+        caption: { zh: '水也能下去游。', en: 'You can swim in it.' },
       },
       {
         src: '/projects/ue-game/horse-riding.png',
         alt: 'Horseback riding',
-        caption: { zh: '策马出发。', en: 'Ride out.' },
+        caption: { zh: '骑马赶路。', en: 'Ride to get around.' },
       },
       {
         src: '/projects/ue-game/terrain-plugin.png',
         alt: 'Procedural terrain editor plugin',
-        caption: { zh: '地形，生成完毕。', en: 'Terrain, generated.' },
+        caption: { zh: '地形是算出来的。', en: 'The terrain is generated.' },
       },
     ],
     notes: [
       {
-        zh: '一个可玩的虚幻引擎垂直切片：巨龙 BOSS 战、刀剑弓杖战斗、游泳与骑马，都在同一个风格化世界里跑通。',
-        en: 'A playable Unreal Engine vertical slice: dragon boss encounter, sword / bow / staff combat, swimming, and horse-mounted travel in a stylized world.',
+        zh: '一个能玩下来的切片：打龙、换武器、下水、骑马，都在同一个世界里。',
+        en: 'A slice you can play through: boss fight, weapon swaps, swimming, riding — one world.',
       },
       {
-        zh: 'HUD、背包与炼金流程都由自定义 UMG 实现——研磨、加水、搅拌、加热，每一步都会改变结果。',
-        en: 'Custom UMG systems drive the HUD, inventory, and an alchemy crafting flow where grinding, water, stirring, and heat combine into recipes.',
+        zh: 'HUD、背包、炼金都是自己用 UMG 搭的：研磨、加水、搅拌、加热，顺序不同，出来的东西也不一样。',
+        en: 'HUD, inventory and alchemy are custom UMG: grind, add water, stir, heat — the order changes what you get.',
       },
       {
-        zh: '配套的编辑器插件负责造世界：基于噪声的高度图、生物群系遮罩与样条道路，全部在编辑器内生成。',
-        en: 'A companion editor plugin builds the world itself — noise-based heightmaps, biome masks, and spline roads generated directly in the editor.',
+        zh: '地形靠编辑器插件生成：噪声高度图配生物群系遮罩，路是样条拉出来的。',
+        en: 'Terrain comes from an editor plugin: noise heightmaps with biome masks, roads pulled out as splines.',
       },
     ],
   },
@@ -158,27 +201,27 @@ export const projects: Project[] = [
       {
         src: '/projects/kimpeanut-vault/vault-overview.png',
         alt: 'KimPeanut Vault records screen',
-        caption: { zh: '以本地加密为核心的专注记录工作区。', en: 'A focused records workspace with local encryption at the center.' },
+        caption: { zh: '打开就是记录列表。', en: 'Records, right away.' },
       },
       {
         src: '/projects/kimpeanut-vault/login.jpg',
         alt: 'KimPeanut Vault unlock screen',
-        caption: { zh: '极简而有分量的解锁流程。', en: 'The vault opens with a minimal, intentional unlock flow.' },
+        caption: { zh: '输密码，进去。', en: 'Password, then in.' },
       },
       {
         src: '/projects/kimpeanut-vault/sync.jpg',
         alt: 'KimPeanut Vault sync screen',
-        caption: { zh: '同步状态就在记录旁边，一目了然。', en: 'Sync status stays legible and close to the records it protects.' },
+        caption: { zh: '同步状态就摆在旁边。', en: 'Sync status, right there.' },
       },
     ],
     notes: [
       {
-        zh: '围绕一个简单的想法构建：私人保险箱应当安静、直接，且完全私密。',
-        en: 'Designed around a simple idea: a personal vault should feel calm, direct, and private.',
+        zh: '想要的东西很简单：一个放私人记录的地方，不联网，不花哨。',
+        en: 'The ask was simple: somewhere to keep private records. Offline, no fuss.',
       },
       {
-        zh: '记录、搜索、备份与锁定始终可见，却不会把工作区变成一个仪表盘。',
-        en: 'Records, search, backup, and lock controls stay visible without turning the workspace into a dashboard.',
+        zh: '搜索、备份、锁上——都在手边，但不至于摆成一个仪表盘。',
+        en: 'Search, backup, lock — all within reach, without turning into a dashboard.',
       },
     ],
   },

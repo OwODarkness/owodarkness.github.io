@@ -1,6 +1,7 @@
 import './styles/app.css';
 import { mountLibraryExplorer } from './lib/library-explorer';
 import { mountSkillExplorer } from './lib/skill-explorer';
+import { mountRailProgress, mountSectionSpy } from './lib/scroll-spy';
 import { mountTerminal } from './lib/terminal';
 import { mountLangSwitch } from './lib/lang-switch';
 import { applyDocumentLocale, getLocale, setLocale, toggleLocale, type Locale } from './lib/i18n';
@@ -19,6 +20,8 @@ const render = () => {
   mountTerminal();
   mountSkillExplorer(locale);
   mountLibraryExplorer(locale);
+  mountSectionSpy();
+  mountRailProgress();
   mountLangSwitch(() => {
     locale = toggleLocale(locale);
     setLocale(locale);

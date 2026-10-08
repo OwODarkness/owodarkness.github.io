@@ -41,6 +41,7 @@ export const renderApp = (locale: Locale) => `
         <img class="brand-icon" src="/icon.png" alt="" width="28" height="30" />
         <h1 class="brand-name">OwODarkness</h1>
       </a>
+      <p class="header-crumb" aria-live="polite"><span>visitor@owodarkness:</span><span id="crumb-path">~</span><span class="header-crumb-caret">$</span></p>
       <nav class="header-nav" aria-label="Contact and profile">
         <a class="header-link header-mail" href="mailto:${profile.email}"><span class="mail-full">${profile.email}</span><span class="mail-short">${tx(ui.nav.email, locale)}</span></a>
         <a class="header-link" href="${profile.githubUrl}" target="_blank" rel="noreferrer">GitHub <span class="link-arrow" aria-hidden="true">↗</span></a>
@@ -77,8 +78,11 @@ export const renderApp = (locale: Locale) => `
           <h2 class="projects-title" id="projects-title">${tx(ui.projects.title, locale)}</h2>
           <p>${tx(ui.projects.intro, locale)}</p>
         </div>
-        <div class="projects-grid">
-          ${projects.map((project, index) => renderProjectCard(project, index, locale)).join('')}
+        <div class="projects-rail">
+          <div class="projects-grid" id="projects-grid" tabindex="0" role="region" aria-label="${tx(ui.projects.title, locale)}">
+            ${projects.map((project, index) => renderProjectCard(project, index, locale)).join('')}
+          </div>
+          <div class="rail-track" id="rail-track" aria-hidden="true"><span class="rail-thumb"></span></div>
         </div>
       </section>
       <section class="skills-section" id="skills" aria-labelledby="skills-title">
